@@ -1,15 +1,15 @@
 <template>
-  <div class="app">
-    <div class="navbar-top container-fluid">
+  <div class="app app--background">
+    <div class="container-fluid navbar-top--background navbar-top--border-bottom">
       <navbar :has-search="false" class="container" />
     </div>
-    <div class="content container">
+    <div class="container content--background">
       <div>
         <h1 v-if="blog">
           Detail Blog
         </h1>
         <h1 v-else>
-          Non data
+          Not found
         </h1>
       </div>
       <div v-if="blog">
@@ -20,7 +20,7 @@
           {{ blog.title }}
         </h1>
         <p class="description">
-          {{ blog.content }}
+          {{ blog.content | capitalizeFirstLetter }}
         </p>
         <img :src="blog.image">
         <p>
@@ -97,15 +97,17 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .app{
-  background-color:antiquewhite;
-  .content {
-    background-color: #fff;
-    border: solid 0.5 gray;
-    caret-color: transparent;
+  &--background{
+    background-color:antiquewhite;
   }
-  .navbar-top {
+  .navbar-top--background {
     background-color: #f8f9fa;
+  }
+  .navbar-top--border {
     border-bottom: solid 0.5px #ccc;
+  }
+  .content--background {
+    background-color: #fff;
   }
 }
 </style>

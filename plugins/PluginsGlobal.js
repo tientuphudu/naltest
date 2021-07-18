@@ -10,3 +10,7 @@ Vue.filter('formatDate', (value) => {
     (dd > 9 ? '' : '0') + dd
   ].join('/')
 })
+
+Vue.filter('capitalizeFirstLetter', (value) => {
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})

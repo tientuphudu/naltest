@@ -1,21 +1,21 @@
 <template>
-  <div class="app">
-    <div class="navbar-top container-fluid">
+  <div class="app app--background">
+    <div class="container-fluid navbar-top--background navbar-top--border-bottom">
       <navbar :has-search="true" class="container" />
     </div>
-    <div class="content container">
+    <div class="container content content--background">
       <div>
         <h1 v-if="blogs.length > 0">
           List Blog
         </h1>
         <h1 v-else>
-          Non data
+          No data
         </h1>
       </div>
       <ul class="list-unstyled">
         <div v-for="blog in blogs" :key="blog.id" class="media border mb-3 position-relative">
           <nuxt-link :to="blog.id">
-            <img :src="blog.image" class="img-blog mr-3">
+            <img :src="blog.image" class="media-img mr-3">
           </nuxt-link>
           <div class="media-body">
             <div>
@@ -24,9 +24,9 @@
                   {{ blog.title }}
                 </h5>
               </nuxt-link>
-              {{ blog.content }}
+              {{ blog.content | capitalizeFirstLetter }}
             </div>
-            <div class="position-absolute create-at">
+            <div class="position-absolute media-body__create-at--bottom">
               <span>Created at: {{ blog.createdAt | formatDate }}</span>
             </div>
           </div>
@@ -76,25 +76,29 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .app{
-  background-color:antiquewhite;
+  &--background{
+    background-color:antiquewhite;
+  }
+  .navbar-top--background {
+    background-color: #f8f9fa;
+  }
+  .navbar-top--border {
+    border-bottom: solid 0.5px #ccc;
+  }
   .content {
-    background-color: #fff;
-    border: solid 0.5 gray;
-    caret-color: transparent;
-    .list-unstyled{
-        .media {
-        .img-blog {
-          width: 150px;
-        }
-        .create-at {
+    &--background{
+      background-color:#fff;
+    }
+    .media {
+      .media-img{
+        width: 150px;
+      }
+      .media-body{
+        &__create-at--bottom{
           bottom: 0;
         }
       }
     }
-  }
-  .navbar-top {
-    background-color: #f8f9fa;
-    border-bottom: solid 0.5px #ccc;
   }
 }
 </style>
